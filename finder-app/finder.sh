@@ -11,8 +11,7 @@
 #       where X is number of files in the directory and all sub directories
 #       where Y is the number of matching lines found in respective files
 
-filesdir=$1
-searchstr=$2
+
 
 usage="Usage: <filesdir> <searchstr>"
 if [ $# -ne 2 ]; then 
@@ -20,11 +19,13 @@ if [ $# -ne 2 ]; then
     exit 1
 fi
 
+filesdir=$1
+searchstr=$2
+
 if [ ! -d $filesdir ]; then
     echo "filesdir is not a directory in the filesystem."
     exit 1
 fi
-
 
 line_count=$(grep -r "$searchstr" $filesdir  | wc -l)
 dir_and_files_count=$(find $filesdir -type f | wc -l)
